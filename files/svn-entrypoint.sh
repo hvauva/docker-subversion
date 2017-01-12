@@ -3,7 +3,6 @@
 cat <<EOF
 Version 1.0.4
 
-
 To use this container you can add a volume for $DAV_SVN_CONF
 which includes the following 2 files:
 
