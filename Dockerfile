@@ -17,10 +17,6 @@ RUN apt-get update && apt-get install -y \
 RUN a2enmod dav_svn
 RUN a2enmod auth_digest
 
-#RUN mkdir /var/svn-backup
-#RUN mkdir -p /var/local/svn
-#RUN mkdir /etc/apache2/dav_svn
-
 RUN mkdir $SVN_BACKUP
 RUN mkdir -p $SVN_ROOT
 RUN mkdir $DAV_SVN_CONF

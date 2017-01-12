@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cat <<EOF
-Version 1.0.2
+Version 1.0.3
 
 To use this container you can add a volume for /etc/apache2/dav_svn
 which includes the following 2 files:
@@ -14,11 +14,11 @@ dav_svn.passwd
    
 There will be also daily backups of the subversion projects stored under
 
-/var/svn-backup
+$SVN_BACKUP
 
 The actuall SVN Data is stored in the Volume beneath
 
-/var/local/svn
+$SVN_ROOT
 EOF
 
 if [ ! -f /etc/apache2/dav_svn/dav_svn.authz ]
