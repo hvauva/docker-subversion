@@ -1,9 +1,9 @@
 #!/bin/bash
 
 cat <<EOF
-Version 1.0.3
+Version 1.0.4
 
-To use this container you can add a volume for /etc/apache2/dav_svn
+To use this container you can add a volume for $DAV_SVN_CONF
 which includes the following 2 files:
 
 dav_svn.authz
@@ -21,20 +21,20 @@ The actuall SVN Data is stored in the Volume beneath
 $SVN_ROOT
 EOF
 
-if [ ! -f /etc/apache2/dav_svn/dav_svn.authz ]
+if [ ! -f $DAV_SVN_CONF/dav_svn.authz ]
 then
     echo "generating dav_svn.authz file which disables user protection"
-    cat <<EOF > /etc/apache2/dav_svn/dav_svn.authz
+    cat <<EOF > $DAV_SVN_CONF/dav_svn.authz
 # disable protection - everybody can do what he wants
 [/]
 * = rw
 EOF
 fi
 
-if [ ! -f /etc/apache2/dav_svn/dav_svn.passwd ]
+if [ ! -f $DAV_SVN_CONF/dav_svn.passwd ]
 then
     echo "generating empty htpasswd file for svn users"
-    echo "# no users in this htpasswd file" > /etc/apache2/dav_svn/dav_svn.passwd
+    echo "# no users in this htpasswd file" > $DAV_SVN_CONF/dav_svn.passwd
 fi
 
 chown -R www-data:www-data "/var/local/svn/"
