@@ -4,6 +4,11 @@ MAINTAINER MarvAmBass
 
 ENV LANG C.UTF-8
 
+ENV test_env 10
+ENV SVN /var/local/svn
+ENV SVN_BACKUP /var/svn-backup
+ENV DAV_SVN_CONF /etc/apache2/dav_svn
+
 RUN apt-get update && apt-get install -y \
     subversion \
     libapache2-svn \
