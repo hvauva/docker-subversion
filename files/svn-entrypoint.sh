@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cat <<EOF
-Version 1.0.1
+Version 1.0.2
 
 To use this container you can add a volume for /etc/apache2/dav_svn
 which includes the following 2 files:

@@ -4,8 +4,8 @@ MAINTAINER MarvAmBass
 
 ENV LANG C.UTF-8
 
-ENV test_env 10
-ENV SVN /var/local/svn
+ENV SVN_REPO master
+ENV SVN_ROOT /var/local/svn
 ENV SVN_BACKUP /var/svn-backup
 ENV DAV_SVN_CONF /etc/apache2/dav_svn
 
@@ -17,9 +17,13 @@ RUN apt-get update && apt-get install -y \
 RUN a2enmod dav_svn
 RUN a2enmod auth_digest
 
-RUN mkdir /var/svn-backup
-RUN mkdir -p /var/local/svn
-RUN mkdir /etc/apache2/dav_svn
+#RUN mkdir /var/svn-backup
+#RUN mkdir -p /var/local/svn
+#RUN mkdir /etc/apache2/dav_svn
+
+RUN mkdir $SVN_BACKUP
+RUN mkdir -p $SVN_ROOT
+RUN mkdir $DAV_SVN_CONF
 
 ADD files/dav_svn.conf /etc/apache2/mods-available/dav_svn.conf
 
@@ -34,4 +38,4 @@ RUN echo "0 0 * * *	root    /usr/local/bin/svn-backuper.sh" >> /etc/crontab
 
 RUN sed -i 's/# exec CMD/&\nsvn-entrypoint.sh/g' /opt/entrypoint.sh
 
-RUN svnadmin create /var/local/svn/master
+RUN svnadmin create $SVN_ROOT/$SVN_REPO
